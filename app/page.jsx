@@ -27,8 +27,9 @@ function Shell() {
   const pending = requests.filter((r) => r.doc === me && r.status === 'pending').length;
   const labels = [
     ['find', 'Find journeys'], ['messages', 'Messages'], ['journal', 'My journal'], ['insights', 'Insights'],
-    ['doctors', 'Find a doctor'], ['share', 'Share my journey'], ['portal', pending ? `For doctors (${pending})` : 'For doctors'], ['ideas', 'Product ideas'],
+    ['doctors', 'Find a doctor'], ['share', 'Share my journey'], ['portal', pending ? `For doctors (${pending})` : 'For doctors'],
   ];
+  //['ideas', 'Product ideas']
   const Active = TABS[tab] || FindTab;
 
   return (
