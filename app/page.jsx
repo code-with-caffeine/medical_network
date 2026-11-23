@@ -17,7 +17,13 @@ const TABS = {
 };
 
 function Shell() {
-  const { tab, setTab, requests, me, toast, resetDemo } = useApp();
+  const app = useApp();
+
+  if (app === null) {
+    return null;
+  }
+
+  const { tab, setTab, requests, me, toast, resetDemo } = app;
   const pending = requests.filter((r) => r.doc === me && r.status === 'pending').length;
   const labels = [
     ['find', 'Find journeys'], ['messages', 'Messages'], ['journal', 'My journal'], ['insights', 'Insights'],
