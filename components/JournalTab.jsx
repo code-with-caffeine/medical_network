@@ -69,7 +69,7 @@ export default function JournalTab() {
             <div className="flex flex-wrap gap-2">
               {Array.from({ length: 11 }, (_, i) => (
                 <button key={i} type="button" role="radio" aria-checked={f.sev === i} onClick={() => setF({ ...f, sev: i })}
-                  className={`h-11 w-11 rounded-md border text-base ${f.sev === i ? 'border-brand bg-brand text-white' : 'border-rule bg-white hover:border-brand'}`}>{i}</button>
+                  className={`h-11 w-11 rounded-md border text-base ${f.sev === i ? 'border-brand bg-brand text-white' : 'border-rule [background:var(--surface)] hover:border-brand'}`}>{i}</button>
               ))}
             </div>
             <p className="mt-1 flex justify-between text-sm text-ink-soft" style={{ maxWidth: '31rem' }}><span>None</span><span>Worst</span></p>

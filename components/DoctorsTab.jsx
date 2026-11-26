@@ -22,7 +22,7 @@ export default function DoctorsTab() {
       <h1 className={h1}>Find a doctor</h1>
       <p className="mt-2 max-w-xl text-ink-soft">Every doctor here has a verified licence and has shared real cases, so you can see their track record before you ask.</p>
       <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 border-y border-rule py-2 text-sm">
-        <select aria-label="Specialty" className="min-h-10 rounded border border-rule bg-white px-2" value={spec} onChange={(e) => setSpec(e.target.value)}>
+        <select aria-label="Specialty" className="min-h-10 rounded border [border-color:var(--rule)] [background:var(--surface)] px-2" value={spec} onChange={(e) => setSpec(e.target.value)}>
           <option value="all">All specialties</option>{specs.map((s) => <option key={s}>{s}</option>)}
         </select>
         <input aria-label="City" className={`${inp} !min-h-10 max-w-[11rem]`} placeholder="City" value={city} onChange={(e) => setCity(e.target.value)} />

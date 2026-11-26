@@ -23,12 +23,12 @@ export default function Bell() {
   return (
     <div className="relative" ref={ref}>
       <button onClick={() => setOpen(!open)} aria-expanded={open} aria-label={`Notifications, ${unread} unread`}
-        className="relative inline-flex h-11 w-11 items-center justify-center rounded-md text-ink hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-brand">
+        className="relative inline-flex h-11 w-11 items-center justify-center rounded-md text-ink hover:[background:var(--surface)] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand">
         <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M6 17V11a6 6 0 1 1 12 0v6l1.5 2h-15z" /><path d="M10 21h4" /></svg>
         {unread > 0 && <span className="absolute right-1 top-1 min-w-5 rounded-full bg-brand px-1 text-center text-xs text-white">{unread}</span>}
       </button>
       {open && (
-        <div className="absolute right-0 z-30 mt-2 w-80 max-w-[calc(100vw-2rem)] rounded-lg border border-rule bg-white p-3 shadow-lg">
+        <div className="absolute right-0 z-30 mt-2 w-80 max-w-[calc(100vw-2rem)] rounded-lg border p-3 shadow-lg" style={{ background: 'var(--surface)', borderColor: 'var(--rule)' }}>
           {notes.length === 0 && <p className="text-sm text-ink-soft">Nothing yet. Updates on requests and messages appear here.</p>}
           <ul className="max-h-72 space-y-1 overflow-y-auto">
             {notes.map((n) => (

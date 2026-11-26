@@ -28,7 +28,7 @@ export default function Home() {
 
   // On navigation: update the tab title, scroll to top and move focus to the content for keyboard and screen reader users.
   useEffect(() => {
-    document.title = `${TITLES[route] || 'MedMatch'} | MedMatch`;
+    document.title = `${TITLES[route] || 'Humraahi'} | Humraahi`;
     if (first.current) { first.current = false; return; }
     window.scrollTo(0, 0);
     main.current?.focus({ preventScroll: true });
@@ -36,7 +36,7 @@ export default function Home() {
 
   return (
     <>
-      <button onClick={() => main.current?.focus()} className="sr-only focus:not-sr-only focus:absolute focus:left-2 focus:top-2 focus:z-50 focus:rounded focus:bg-white focus:px-3 focus:py-2">Skip to content</button>
+      <button onClick={() => main.current?.focus()} className="sr-only focus:not-sr-only focus:absolute focus:left-2 focus:top-2 focus:z-50 focus:rounded focus:[background:var(--surface)] focus:px-3 focus:py-2">Skip to content</button>
       <TopBar />
       <SearchStrip />
       <main ref={main} tabIndex={-1} className="mx-auto min-h-[70vh] max-w-5xl px-4 pb-28 pt-6 outline-none md:pb-16">

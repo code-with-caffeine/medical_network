@@ -42,7 +42,7 @@ export default function DoctorPortal() {
     <div>
       <div className="mb-8 flex flex-wrap items-center gap-x-4 gap-y-2 border-b border-rule pb-4 text-sm">
         <label className="flex items-center gap-2">Demo: signed in as
-          <select aria-label="Signed in as" className="min-h-10 rounded border border-rule bg-white px-2" value={id} onChange={(e) => setMe(e.target.value)}>
+          <select aria-label="Signed in as" className="min-h-10 rounded border [border-color:var(--rule)] [background:var(--surface)] px-2" value={id} onChange={(e) => setMe(e.target.value)}>
             {Object.values(doctors).map((d) => <option key={d.id} value={d.id}>{d.name}</option>)}
           </select>
         </label>

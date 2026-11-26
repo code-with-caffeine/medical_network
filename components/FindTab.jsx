@@ -139,12 +139,12 @@ export default function FindTab() {
               <div className="flex flex-wrap items-center gap-x-6 gap-y-2 pb-3">
                 <label className="flex min-h-10 items-center gap-2"><input type="checkbox" className="h-4 w-4" checked={onlyVerified} onChange={(e) => setOnlyVerified(e.target.checked)} /> Doctor-verified only</label>
                 <label className="flex items-center gap-2">Diagnosis
-                  <select aria-label="Filter by diagnosis" className="min-h-10 rounded border border-rule bg-white px-2" value={res.c} onChange={(e) => setCond(e.target.value)}>
+                  <select aria-label="Filter by diagnosis" className="min-h-10 rounded border [border-color:var(--rule)] [background:var(--surface)] px-2" value={res.c} onChange={(e) => setCond(e.target.value)}>
                     <option value="all">All</option>{res.conds.map((c) => <option key={c}>{c}</option>)}
                   </select>
                 </label>
                 <label className="flex items-center gap-2">Sort
-                  <select aria-label="Sort journeys" className="min-h-10 rounded border border-rule bg-white px-2" value={sort} onChange={(e) => setSort(e.target.value)}>
+                  <select aria-label="Sort journeys" className="min-h-10 rounded border [border-color:var(--rule)] [background:var(--surface)] px-2" value={sort} onChange={(e) => setSort(e.target.value)}>
                     <option value="match">Best match</option><option value="verified">Doctor-verified first</option><option value="improved">Most improved</option><option value="recent">Most recent</option>
                   </select>
                 </label>

@@ -12,6 +12,25 @@
   --font-serif: "Newsreader", ui-serif, Georgia, serif;
 }
 
+/* ── Semantic surface tokens ─────────────────────────────────────────── */
+:root {
+  --surface: #ffffff;
+  color-scheme: light;
+}
+
+/* Override Tailwind theme tokens in dark mode so text-ink, text-ink-soft,
+   border-rule, bg-mist, etc. all flip automatically without touching JSX. */
+html.dark {
+  --color-mist:      #15202a;   /* body bg + bg-mist chips */
+  --color-ink:       #e8eff4;   /* text-ink  → near-white  */
+  --color-ink-soft:  #8fa6b4;   /* text-ink-soft → muted   */
+  --color-rule:      #2e3f4c;   /* border-rule              */
+  --color-brand:     #8b9cf8;   /* lighter purple for dark bg contrast */
+  --color-brand-dark:#6b7de8;   /* hover state              */
+  --surface:         #1e2a32;   /* replaces bg-white        */
+  color-scheme: dark;
+}
+
 body {
   background: var(--color-mist);
   color: var(--color-ink);
@@ -19,6 +38,7 @@ body {
   font-size: 16px;
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
+  transition: background 0.2s, color 0.2s;
 }
 
 :focus-visible { outline: 2px solid var(--color-brand); outline-offset: 2px; }

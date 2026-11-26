@@ -41,7 +41,7 @@ export default function MessagesTab() {
                 return (
                   <li key={id}>
                     <button onClick={() => selectThread(k.id)} aria-current={activeThread === k.id ? 'true' : undefined}
-                      className={`flex w-full items-center justify-between rounded-md px-3 py-2 text-left ${activeThread === k.id ? 'bg-white ring-1 ring-brand' : 'hover:bg-white'}`}>
+                      className={`flex w-full items-center justify-between rounded-md px-3 py-2 text-left ${activeThread === k.id ? '[background:var(--surface)] ring-1 ring-brand' : 'hover:[background:var(--surface)]'}`}>
                       <span><span className="block font-medium">{k.alias}</span><span className="text-sm text-ink-soft">{k.cond}</span></span>
                       {unread[id] && <span className="h-2.5 w-2.5 rounded-full bg-brand" aria-label="Unread" />}
                     </button>

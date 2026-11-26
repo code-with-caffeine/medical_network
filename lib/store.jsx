@@ -34,6 +34,8 @@ export function AppProvider({ children }) {
   const [shareDraft, setShareDraft] = useState(null);
   const [me, setMe] = useState('d1');
   const [toast, setToast] = useState(null);
+  const [dark, setDark] = useState(false);
+  const toggleDark = () => setDark((d) => !d);
 
   const live = useRef({});
   live.current = { route, activeThread };
@@ -52,6 +54,18 @@ export function AppProvider({ children }) {
   }, [pathname]);
   const go = (r) => { window.location.hash = `#/${r}`; };
   const mode = route.startsWith('d/') ? 'doctor' : 'patient';
+
+  // Dark mode: sync class on <html> and persist preference
+  useEffect(() => {
+    const stored = localStorage.getItem('mm-dark');
+    if (stored === '1' || (stored === null && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      setDark(true);
+    }
+  }, []);
+  useEffect(() => {
+    document.documentElement.classList.toggle('dark', dark);
+    try { localStorage.setItem('mm-dark', dark ? '1' : '0'); } catch {}
+  }, [dark]);
 
   // Load and save
   useEffect(() => {
@@ -217,6 +231,7 @@ export function AppProvider({ children }) {
     notify, addNote, markNotesRead, search, toggleSave, sendRequest, cancelRequest, decide, markRequestsSeen,
     openThread, sendMsg, addCase, removeCase, reportCase, resolveReport,
     registerDoctor, approveDoctor, toggleAccepting, addJournal, removeJournal, clearJournal, loadSampleJournal, resetDemo,
+    dark, toggleDark,
   };
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
 }

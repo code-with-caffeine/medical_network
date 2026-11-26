@@ -6,11 +6,11 @@ import { useApp } from '../lib/store';
 
 export const h1 = 'font-serif text-4xl leading-tight md:text-5xl';
 export const h2 = 'font-serif text-2xl leading-snug';
-export const inp = 'w-full min-h-11 rounded-md border border-rule bg-white px-3 py-2 text-base text-ink placeholder:text-ink-soft/70 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand';
+export const inp = 'w-full min-h-11 rounded-md border border-rule px-3 py-2 text-base text-ink placeholder:text-ink-soft/70 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand [background:var(--surface)] [color:var(--text)] [border-color:var(--rule)]';
 export const btn = 'inline-flex min-h-11 items-center justify-center rounded-md bg-brand px-5 py-2 text-sm font-medium text-white hover:bg-brand-dark disabled:opacity-40 disabled:hover:bg-brand focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2';
 export const btn2 = 'inline-flex min-h-11 items-center justify-center rounded-md border border-brand px-4 py-2 text-sm font-medium text-brand hover:bg-brand/5 disabled:opacity-40 disabled:hover:bg-transparent focus:outline-none focus-visible:ring-2 focus-visible:ring-brand';
 export const lnk = 'inline-flex min-h-10 items-center text-sm font-medium text-brand underline underline-offset-2 hover:text-brand-dark disabled:opacity-40 disabled:no-underline';
-export const box = 'rounded-lg border border-rule bg-white';
+export const box = 'rounded-lg border [border-color:var(--rule)] [background:var(--surface)]';
 
 export function Chips({ picked, setPicked }) {
   const toggle = (s) => setPicked(picked.includes(s) ? picked.filter((x) => x !== s) : [...picked, s]);
@@ -18,7 +18,7 @@ export function Chips({ picked, setPicked }) {
     <div className="flex flex-wrap gap-2">
       {SYMPTOMS.map((s) => (
         <button key={s} type="button" onClick={() => toggle(s)} aria-pressed={picked.includes(s)}
-          className={`min-h-11 rounded-full border px-4 py-2 text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-brand ${picked.includes(s) ? 'border-brand bg-brand text-white' : 'border-rule bg-white text-ink hover:border-brand'}`}>
+          className={`min-h-11 rounded-full border px-4 py-2 text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-brand ${picked.includes(s) ? 'border-brand bg-brand text-white' : 'border-rule [background:var(--surface)] text-ink hover:border-brand'}`}>
           {s}
         </button>
       ))}
@@ -56,7 +56,7 @@ export function Modal({ title, onClose, children }) {
   }, [onClose]);
   return (
     <div className="fixed inset-0 z-30 flex items-end justify-center bg-ink/40 p-0 sm:items-center sm:p-4" onClick={onClose}>
-      <div role="dialog" aria-modal="true" aria-label={title} onClick={(e) => e.stopPropagation()} className="max-h-[90vh] w-full max-w-md overflow-y-auto rounded-t-xl bg-white p-5 sm:rounded-xl">
+      <div role="dialog" aria-modal="true" aria-label={title} onClick={(e) => e.stopPropagation()} className="max-h-[90vh] w-full max-w-md overflow-y-auto rounded-t-xl [background:var(--surface-overlay)] p-5 sm:rounded-xl">
         {children}
       </div>
     </div>

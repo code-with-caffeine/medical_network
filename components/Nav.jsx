@@ -3,6 +3,33 @@
 import { useApp } from '../lib/store';
 import Bell from './Bell';
 
+function DarkToggle() {
+  const { dark, toggleDark } = useApp();
+  return (
+    <button
+      onClick={toggleDark}
+      aria-label={dark ? 'Switch to light mode' : 'Switch to dark mode'}
+      title={dark ? 'Light mode' : 'Dark mode'}
+      className="relative inline-flex h-11 w-11 items-center justify-center rounded-md text-ink-soft hover:text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+    >
+      {dark ? (
+        /* Sun icon */
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="5" /><line x1="12" y1="2" x2="12" y2="4" /><line x1="12" y1="20" x2="12" y2="22" />
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" /><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+          <line x1="2" y1="12" x2="4" y2="12" /><line x1="20" y1="12" x2="22" y2="12" />
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" /><line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+        </svg>
+      ) : (
+        /* Moon icon */
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+        </svg>
+      )}
+    </button>
+  );
+}
+
 const PATHS = {
   find: <><circle cx="11" cy="11" r="6.5" /><path d="m20 20-4.2-4.2" /></>,
   journal: <><path d="M6 4h11a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H6z" /><path d="M9 8h6M9 12h6M9 16h3" /></>,
@@ -37,7 +64,7 @@ export function TopBar() {
   return (
     <header className="sticky top-0 z-20 border-b border-rule bg-mist/95 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-5xl items-center gap-4 px-4">
-        <button onClick={() => go(mode === 'doctor' ? 'd/requests' : 'find')} className="inline-flex min-h-11 items-center font-serif text-2xl text-ink">MedMatch</button>
+        <button onClick={() => go(mode === 'doctor' ? 'd/requests' : 'find')} className="inline-flex min-h-11 items-center font-serif text-2xl text-ink">Humraahi</button>
         <nav aria-label="Main" className="ml-4 hidden gap-1 md:flex">
           {items.map(([id, label]) => (
             <button key={id} onClick={() => go(id)} aria-current={active(id) ? 'page' : undefined}
@@ -50,6 +77,7 @@ export function TopBar() {
           <button onClick={() => go(mode === 'doctor' ? 'find' : 'd/requests')} className="min-h-11 rounded-md px-3 text-sm font-medium text-ink-soft underline-offset-2 hover:text-ink hover:underline">
             {mode === 'doctor' ? 'Patient view' : "I'm a doctor"}
           </button>
+          <DarkToggle />
           <Bell />
         </div>
       </div>
@@ -61,7 +89,7 @@ export function BottomBar() {
   const { go } = useApp();
   const { items, active, badge } = useNav();
   return (
-    <nav aria-label="Main (mobile)" className="fixed inset-x-0 bottom-0 z-20 border-t border-rule bg-white md:hidden" style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}>
+    <nav aria-label="Main (mobile)" className="fixed inset-x-0 bottom-0 z-20 border-t border-rule bg-mist md:hidden" style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}>
       <div className="mx-auto grid max-w-md" style={{ gridTemplateColumns: `repeat(${items.length}, minmax(0, 1fr))` }}>
         {items.map(([id, label, icon]) => (
           <button key={id} onClick={() => go(id)} aria-current={active(id) ? 'page' : undefined}
@@ -81,7 +109,7 @@ export function SearchStrip() {
   const list = searched || picked;
   if (route === 'find' || mode === 'doctor' || !list.length) return null;
   return (
-    <div className="border-b border-rule bg-white">
+    <div className="border-b border-rule bg-mist">
       <div className="mx-auto flex max-w-5xl items-center justify-between gap-3 px-4 py-1.5 text-sm">
         <span className="min-w-0 truncate text-ink-soft">Your search: <span className="text-ink">{list.slice(0, 2).join(', ')}{list.length > 2 ? ` and ${list.length - 2} more` : ''}</span></span>
         <button onClick={() => go('find')} className="min-h-10 shrink-0 font-medium text-brand underline underline-offset-2">Edit search</button>

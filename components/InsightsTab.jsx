@@ -71,7 +71,7 @@ export default function InsightsTab() {
       <section>
         <div className="flex flex-wrap items-center justify-between gap-2">
           <h2 className={h2}>Treatment leaderboard</h2>
-          <select aria-label="Condition" className="min-h-10 rounded border border-rule bg-white px-2 text-sm" value={cond} onChange={(e) => setCond(e.target.value)}>
+          <select aria-label="Condition" className="min-h-10 rounded border [border-color:var(--rule)] [background:var(--surface)] px-2 text-sm" value={cond} onChange={(e) => setCond(e.target.value)}>
             <option value="all">All conditions</option>{d.groups.map((g) => <option key={g.name}>{g.name}</option>)}
           </select>
         </div>
