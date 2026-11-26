@@ -29,6 +29,6 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts"
-, "app/components/Bell.jsx", "app/components/DoctorPortal.jsx", "app/components/DoctorsTab.jsx", "app/components/FindTab.jsx", "app/components/IdeasTab.jsx", "app/components/InsightsTab.jsx", "app/components/JournalTab.jsx", "app/components/JourneyCard.jsx", "app/components/MessagesTab.jsx", "app/components/Modals.jsx", "app/components/ShareTab.jsx", "app/lib/data.jsx", "app/lib/store.jsx", "app/ui.jsx"  ],
+, "components/Bell.jsx", "components/DoctorPortal.jsx", "components/DoctorsTab.jsx", "components/FindTab.jsx", "components/IdeasTab.jsx", "components/InsightsTab.jsx", "components/JournalTab.jsx", "components/JourneyCard.jsx", "components/MessagesTab.jsx", "components/Modals.jsx", "components/ShareTab.jsx", "lib/data.jsx", "lib/store.jsx", "app/ui.jsx"  ],
   "exclude": ["node_modules"]
 }

@@ -1,26 +1,33 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@theme {
+  --color-mist: #F2F5F7;
+  --color-ink: #15232B;
+  --color-ink-soft: #4B5C66;
+  --color-brand: #34408F;
+  --color-brand-dark: #263075;
+  --color-hl: #F6C445;
+  --color-rule: #D5DDE3;
+  --font-sans: "Figtree", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Newsreader", ui-serif, Georgia, serif;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-mist);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+:focus-visible { outline: 2px solid var(--color-brand); outline-offset: 2px; }
+
+/* The one entrance: results appear once when a search first runs. */
+@keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.reveal { animation: rise 0.35s ease-out both; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { animation: none; }
+  * { transition-duration: 0.01ms !important; }
 }

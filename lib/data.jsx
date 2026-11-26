@@ -3,16 +3,27 @@
 export const SYMPTOMS = ['fatigue', 'brain fog', 'palpitations', 'dizzy on standing', 'joint pain', 'widespread pain', 'poor sleep', 'headache', 'nausea', 'light sensitivity'];
 
 // Stand-in for an LLM: maps everyday words to the symptom list above.
+// Keys match at the start of a word, so "palpitation" also catches "palpitations".
 export const SYN = {
-  tired: 'fatigue', exhausted: 'fatigue', fatigue: 'fatigue', drained: 'fatigue',
-  fog: 'brain fog', concentrate: 'brain fog', forgetful: 'brain fog',
-  racing: 'palpitations', palpitation: 'palpitations', heartbeat: 'palpitations',
-  dizzy: 'dizzy on standing', lightheaded: 'dizzy on standing', faint: 'dizzy on standing',
-  joint: 'joint pain', aches: 'widespread pain', 'all over': 'widespread pain', widespread: 'widespread pain',
-  insomnia: 'poor sleep', "can't sleep": 'poor sleep', 'cant sleep': 'poor sleep', sleep: 'poor sleep',
+  tired: 'fatigue', exhausted: 'fatigue', fatigue: 'fatigue', drained: 'fatigue', 'no energy': 'fatigue',
+  fog: 'brain fog', concentrate: 'brain fog', forgetful: 'brain fog', 'cannot think': 'brain fog',
+  racing: 'palpitations', palpitation: 'palpitations', heartbeat: 'palpitations', 'heart pounding': 'palpitations',
+  dizzy: 'dizzy on standing', lightheaded: 'dizzy on standing', faint: 'dizzy on standing', 'when i stand': 'dizzy on standing',
+  joint: 'joint pain', achy: 'widespread pain', 'all over': 'widespread pain', widespread: 'widespread pain', 'body pain': 'widespread pain',
+  insomnia: 'poor sleep', "can't sleep": 'poor sleep', 'cant sleep': 'poor sleep', 'trouble sleeping': 'poor sleep', 'not sleeping': 'poor sleep', sleepless: 'poor sleep',
   headache: 'headache', migraine: 'headache', nausea: 'nausea', nauseous: 'nausea', sick: 'nausea',
-  light: 'light sensitivity', bright: 'light sensitivity',
+  bright: 'light sensitivity', glare: 'light sensitivity', 'light sensitiv': 'light sensitivity',
 };
+
+const esc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+export function parseSymptoms(text) {
+  const t = text.toLowerCase().replace(/[‘’]/g, "'");
+  const found = new Set();
+  const hit = (k) => new RegExp(`(^|[^a-z])${esc(k)}`).test(t);
+  Object.entries(SYN).forEach(([k, v]) => hit(k) && found.add(v));
+  SYMPTOMS.forEach((s) => hit(s) && found.add(s));
+  return [...found];
+}
 
 export const SEED_DOCTORS = {
   d1: { id: 'd1', name: 'Dr. Meera Iyer', spec: 'Cardiology (autonomic disorders)', city: 'Bengaluru', status: 'verified', accepting: true, licence: 'KMC-48213' },
